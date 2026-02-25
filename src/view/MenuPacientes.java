@@ -34,7 +34,7 @@ public class MenuPacientes {
                 opcao = -1;
             }
 
-            while (opcao >=0 || opcao <= 4) {
+            while (opcao <= 0 && opcao >= 4) {
                 System.out.println("\nErro, opção inválida! Tente novamente: ");
                 try {
                     opcao = Integer.valueOf(console.nextLine());

@@ -21,7 +21,7 @@ public class Principal {
                     opcao = -1;
                 }
 
-                while (opcao != 1 || opcao != 0) {
+                while (opcao != 1 && opcao != 0) {
                     System.out.println("\nErro, opção inválida! Tente novamente: ");
                     try {
                         opcao = Integer.valueOf(console.nextLine());
