@@ -1,4 +1,4 @@
-package src.principal.model;
+package src.model;
 
 import java.io.*;
 import java.util.ArrayList;

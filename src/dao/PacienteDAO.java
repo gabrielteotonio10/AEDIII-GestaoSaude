@@ -1,4 +1,4 @@
-package src.principal.dao;
+package src.dao;
 public class PacienteDAO {
     
 }

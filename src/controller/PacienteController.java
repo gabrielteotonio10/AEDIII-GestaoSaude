@@ -1,4 +1,4 @@
-package src.principal.controller;
+package src.controller;
 public class PacienteController {
     
 }
