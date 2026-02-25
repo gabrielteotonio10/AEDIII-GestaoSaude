@@ -1,4 +1,4 @@
-# 🏥 Sistema de Gestão de Consultas e Exames - TP AED III
+# 🏥 Sistema de Gestão de Consultas e Exames - TP AEDS III
 
 **Pontifícia Universidade Católica de Minas Gerais (PUC Minas)** **Instituto de Ciências Exatas e Informática** **Disciplina:** Algoritmos e Estruturas de Dados III (AED III)
 
