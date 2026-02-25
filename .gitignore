@@ -1,0 +1,27 @@
+# --- Java ---
+# Ignora arquivos compilados (.class)
+*.class
+# Ignora arquivos de pacote (JAR, WAR, EAR)
+*.jar
+*.war
+*.ear
+
+# --- IDEs (VS Code, IntelliJ, Eclipse) ---
+.vscode/
+.idea/
+*.iml
+.settings/
+.project
+.classpath
+bin/
+build/
+
+# --- Arquivos do Sistema Operacional ---
+Thumbs.db
+.DS_Store
+
+# --- Dados do Projeto (Regra de Ouro) ---
+# Ignora os arquivos binários gerados pelo seu sistema.
+# O professor quer ver seu código, não o seu banco de dados pessoal de teste.
+data/*.db
+data/*.index

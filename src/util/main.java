@@ -1,4 +1,4 @@
-package src;
+package src.util;
 public class main {
     
 }

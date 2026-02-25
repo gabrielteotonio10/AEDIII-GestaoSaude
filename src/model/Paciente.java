@@ -4,7 +4,7 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Paciente {
+public class Paciente implements Registro{
     // Variáveis principais
     private int id;
     private String nome;
@@ -18,7 +18,7 @@ public class Paciente {
         this.nome = nome;
         this.cpf = cpf;
         this.alergias = alergias;
-        this.lapide = 0; // 0 para ativo - 1 para inativo
+        this.lapide = ' '; // ' ' para ativo, '*' para excluído
     }
 
     // Construtor vazio
