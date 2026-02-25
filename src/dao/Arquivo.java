@@ -7,7 +7,7 @@ import java.io.RandomAccessFile;
 import java.lang.reflect.Constructor;
 
 public class Arquivo<T extends Registro> {
-    private static final int TAM_CABECALHO = 4; // Primeiro pedaço do arquivo tem 4 bytes
+    private static final int TAM_CABECALHO = 12; // Primeiro pedaço do arquivo tem 4 bytes
     private RandomAccessFile arquivo; // Objeto que manipula os bytes
     private String nomeArquivo;
     private Constructor<T> construtor; // Guarda a forma de como criar um objeto T a partir de bytes
