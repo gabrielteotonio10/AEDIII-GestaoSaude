@@ -14,13 +14,13 @@ public class Arquivo<T extends Registro> {
 
     // Recebe o nome do arquivo e o construtor da classe T
     public Arquivo(String nomeArquivo, Constructor<T> construtor) throws Exception {
-        File diretorio = new File("./dados");
+        File diretorio = new File("./data");
         if (!diretorio.exists()) // Se não existir cria pasta
             diretorio.mkdir();
-        diretorio = new File("./dados/" + nomeArquivo);
+        diretorio = new File("./data/" + nomeArquivo);
         if (!diretorio.exists()) // Se não existir cria aarquivo
             diretorio.mkdir();
-        this.nomeArquivo = "./dados/" + nomeArquivo + "/" + nomeArquivo + ".db"; // Caminho do arquivo
+        this.nomeArquivo = "./data/" + nomeArquivo + "/" + nomeArquivo + ".db"; // Caminho do arquivo
         this.construtor = construtor;
         this.arquivo = new RandomAccessFile(this.nomeArquivo, "rw"); // Abre o arquivo para leitura e escrita (rw)
         // Se o arquivo for novo, escreve o cabeçalho
