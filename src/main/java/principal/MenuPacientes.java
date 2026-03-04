@@ -1,11 +1,12 @@
-package src.Principal;
+package principal;
 
-import src.dao.PacienteDAO;
-import src.model.Paciente;
+import model.Paciente;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+
+import dao.PacienteDAO;
 
 public class MenuPacientes {
     private PacienteDAO pacienteDAO;

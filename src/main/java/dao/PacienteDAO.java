@@ -1,6 +1,6 @@
-package src.dao;
+package dao;
 
-import src.model.Paciente;
+import model.Paciente;
 import java.lang.reflect.Constructor;
 
 public class PacienteDAO {

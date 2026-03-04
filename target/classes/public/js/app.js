@@ -79,22 +79,3 @@ window.removerAlergia = function (index) {
   atualizarTagsNaTela();
 };
 
-// =========================================================
-// CAPTURANDO INFORMAÇÕES DO FORMULÁRIO PARA ENVIAR AO BACKEND
-// =========================================================
-
-document.getElementById("formPaciente").addEventListener("submit", (e) => {
-  e.preventDefault(); // Não deixa a página recarregar
-  // Monta o objeto que enviaremos para o Java
-  const paciente = {
-    nome: document.getElementById("nome").value,
-    cpf: document.getElementById("cpf").value,
-    alergias: listaAlergiasTemporaria, // Pega o array que preenchemos com as tags
-  };
-
-  console.log("Pronto para enviar para o Java:", paciente);
-  alert(
-    "Interface funcionando! O próximo passo é ligar o servidor Java para salvar isso no arquivo .db.",
-  );
-  fecharModal();
-});

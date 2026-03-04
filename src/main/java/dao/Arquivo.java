@@ -1,10 +1,10 @@
-package src.dao;
-
-import src.model.Registro;
+package dao;
 
 import java.io.File;
 import java.io.RandomAccessFile;
 import java.lang.reflect.Constructor;
+
+import model.Registro;
 
 public class Arquivo<T extends Registro> {
     private static final int TAM_CABECALHO = 12; // Primeiro pedaço do arquivo tem 4 bytes

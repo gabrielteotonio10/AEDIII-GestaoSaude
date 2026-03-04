@@ -1,0 +1,196 @@
+/* --- SIDEBAR --- */
+.sidebar {
+  width: 260px;
+  background-color: var(--sidebar-bg);
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  transition: var(--transition);
+  position: fixed;
+  height: 100vh;
+  z-index: 1000;
+}
+
+.sidebar-header {
+  padding: 24px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 1.5rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.logo-icon {
+  color: var(--primary);
+}
+.sidebar-header h2 span {
+  color: var(--primary);
+  font-weight: 300;
+}
+
+.sidebar-nav {
+  flex: 1;
+  padding: 20px 0;
+}
+
+.nav-item {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  padding: 15px 24px;
+  color: #cbd5e1;
+  text-decoration: none;
+  transition: var(--transition);
+}
+
+.nav-item:hover,
+.nav-item.active {
+  background-color: var(--sidebar-hover);
+  color: var(--primary);
+  border-left: 4px solid var(--primary);
+}
+
+.sidebar-footer {
+  padding: 15px 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* --- MAIN WRAPPER (Ajuste para a Sidebar fixa) --- */
+.main-wrapper {
+  flex: 1;
+  margin-left: 260px;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* --- TOPBAR --- */
+.topbar {
+  background-color: var(--bg-surface);
+  height: 70px;
+  padding: 0 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: var(--shadow-sm);
+  position: sticky;
+  top: 0;
+  z-index: 900;
+}
+
+.topbar-left {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+.breadcrumb {
+  color: var(--text-muted);
+  font-size: 0.9rem;
+}
+.breadcrumb strong {
+  color: var(--primary);
+}
+
+.user-profile {
+  display: flex;
+  align-items: center;
+  gap: 25px;
+}
+.notifications {
+  position: relative;
+  cursor: pointer;
+  color: var(--text-muted);
+  font-size: 1.2rem;
+}
+.badge {
+  position: absolute;
+  top: -5px;
+  right: -8px;
+  background: var(--danger);
+  color: white;
+  font-size: 0.7rem;
+  padding: 2px 6px;
+  border-radius: 10px;
+  font-weight: bold;
+}
+
+.user-info {
+  display: flex;
+  flex-direction: column;
+  text-align: right;
+}
+.user-name {
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+.user-role {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+
+.avatar {
+  background-color: var(--primary-light);
+  color: var(--primary-dark);
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.2rem;
+}
+
+/* --- CONTENT --- */
+.content {
+  flex: 1;
+  padding: 30px;
+}
+
+.page-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.page-header h1 {
+  font-size: 1.8rem;
+  color: var(--text-main);
+}
+.page-header p {
+  color: var(--text-muted);
+  margin-top: 5px;
+  font-size: 0.95rem;
+}
+
+/* --- FOOTER --- */
+.footer {
+  background-color: var(--bg-surface);
+  padding: 20px 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 1px solid var(--border);
+  color: var(--text-muted);
+  font-size: 0.9rem;
+}
+
+.footer-links {
+  display: flex;
+  gap: 20px;
+}
+.footer-links a {
+  color: var(--primary);
+  text-decoration: none;
+}
+.footer-links a:hover {
+  text-decoration: underline;
+}
+
+/* Esconde todas as seções, exceto a que tiver a classe active */
+.crud-section {
+  display: none;
+}
+.crud-section.active {
+  display: block;
+}
