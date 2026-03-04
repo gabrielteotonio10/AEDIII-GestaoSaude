@@ -1,5 +1,3 @@
-import { fecharModalCadastro } from "./modal.js";
-
 // Captura do paciente do formulário e envio para o Java
 document.getElementById("formPaciente").addEventListener("submit", (e) => {
   e.preventDefault();

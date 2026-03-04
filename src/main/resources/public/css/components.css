@@ -372,3 +372,45 @@ table td.nome-paciente {
 .input-group, .input-group{
   max-width: 30rem;
 }
+
+
+/* Container que segura todos os toasts no canto da tela */
+#toast-container {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    z-index: 9999;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+/* O design da notificação */
+.toast {
+    min-width: 280px;
+    padding: 16px 24px;
+    border-radius: 8px;
+    color: #fff;
+    font-weight: 500;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    /* Animação: Entra em 0.3s, e some depois de 2.7s */
+    animation: slideIn 0.3s ease forwards, fadeOut 0.3s ease 2.7s forwards;
+}
+
+/* Cores dinâmicas baseadas no tipo da mensagem */
+.toast.sucesso { background-color: #10b981; border-left: 6px solid #059669; }
+.toast.erro { background-color: #ef4444; border-left: 6px solid #b91c1c; }
+.toast.aviso { background-color: #f59e0b; border-left: 6px solid #b45309; }
+
+@keyframes slideIn {
+    from { transform: translateX(120%); opacity: 0; }
+    to { transform: translateX(0); opacity: 1; }
+}
+
+@keyframes fadeOut {
+    from { opacity: 1; }
+    to { opacity: 0; }
+}

@@ -61,7 +61,6 @@ public class Arquivo<T extends Registro> {
         arquivo.seek(TAM_CABECALHO); // Pula o id
         // Loop até o fim do arquivo
         while (arquivo.getFilePointer() < arquivo.length()) {
-            long posicaoAtual = arquivo.getFilePointer();
             byte lapide = arquivo.readByte();
             short tamanho = arquivo.readShort();
             byte[] dados = new byte[tamanho];
