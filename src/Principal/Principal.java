@@ -1,4 +1,4 @@
-package src.view; // Ajuste o pacote se necessário
+package src.Principal; // Ajuste o pacote se necessário
 
 import java.util.Scanner;
 

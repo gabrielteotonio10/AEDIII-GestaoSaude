@@ -1,4 +1,4 @@
-package src.view;
+package src.Principal;
 
 import src.dao.PacienteDAO;
 import src.model.Paciente;

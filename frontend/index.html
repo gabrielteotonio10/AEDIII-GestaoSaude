@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HealthGest | Gestão Clínica</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <link rel="stylesheet" href="css/global.css">
+    <link rel="stylesheet" href="css/layout.css">
+    <link rel="stylesheet" href="css/components.css">
+</head>
+
+<body>
+
+    <!--Cabeçalho-->
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <h2>Health<span>Gest</span></h2>
+        </div>
+
+        <nav class="sidebar-nav">
+            <a href="#" class="nav-item active">
+                <i class="fa-solid fa-users"></i> Pacientes
+            </a>
+            <a href="#" class="nav-item">
+                <i class="fa-solid fa-calendar-check"></i> Consultas
+            </a>
+            <a href="#" class="nav-item">
+                <i class="fa-solid fa-file-medical"></i> Prontuários
+            </a>
+            <a href="#" class="nav-item">
+                <i class="fa-solid fa-chart-pie"></i> Relatórios
+            </a>
+        </nav>
+
+        <div class="sidebar-footer">
+            <a href="#" class="nav-item config">
+                <i class="fa-solid fa-gear"></i> Configurações
+            </a>
+        </div>
+    </aside>
+
+    <!--Parte de cima, com conta-->
+    <div class="main-wrapper">
+
+        <header class="topbar">
+            <div class="topbar-left">
+                <div class="breadcrumb">Início / <strong>Pacientes</strong></div>
+            </div>
+
+            <div class="user-profile">
+                <div class="notifications"><i class="fa-regular fa-bell"></i><span class="badge">2</span></div>
+                <div class="user-info">
+                    <span class="user-name">Gabriel T. Costa</span>
+                    <span class="user-role">Administrador</span>
+                </div>
+                <div class="avatar"><i class="fa-solid fa-user-doctor"></i></div>
+            </div>
+        </header>
+
+        <!--Main-->
+        <main class="content">
+            <!--Gestão de pacientes-->
+            <section id="section-pacientes" class="crud-section active">
+                <!--Parte inicial dos pacientes-->
+                <div class="page-header">
+                    <div>
+                        <h1>Gestão de Pacientes</h1>
+                        <p>Controle de prontuários e exclusão lógica em arquivo binário.</p>
+                    </div>
+                    <button class="btn btn-primary shadow-hover" id="btnNovoPaciente">
+                        <i class="fa-solid fa-plus"></i> Novo Cadastro
+                    </button>
+                </div>
+                <!--Informações gerais do paciente-->
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon bg-green"><i class="fa-solid fa-hospital-user"></i></div>
+                        <div class="stat-info">
+                            <h3>Total Registrado</h3>
+                            <p id="statTotal">0</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon bg-blue"><i class="fa-solid fa-check-circle"></i></div>
+                        <div class="stat-info">
+                            <h3>Pacientes Ativos</h3>
+                            <p id="statAtivos">0</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon bg-red"><i class="fa-solid fa-trash-can"></i></div>
+                        <div class="stat-info">
+                            <h3>Excluídos (Lápide)</h3>
+                            <p id="statExcluidos">0</p>
+                        </div>
+                    </div>
+                </div>
+                <!--Mostra os pacientes gerais-->
+                <div class="data-section">
+                    <div class="toolbar">
+                        <div class="search-box">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                            <input type="number" id="inputBuscaId" placeholder="Pesquisar por ID...">
+                            <button class="btn btn-secondary" id="btnBuscar">Localizar</button>
+                        </div>
+                        <div class="toolbar-actions">
+                            <button class="btn btn-outline" title="Atualizar Tabela"><i
+                                    class="fa-solid fa-rotate-right"></i></button>
+                            <button class="btn btn-outline" title="Exportar Dados"><i
+                                    class="fa-solid fa-download"></i></button>
+                        </div>
+                    </div>
+
+                    <div class="table-container">
+                        <table id="tabelaPacientes">
+                            <thead>
+                                <tr>
+                                    <th width="8%">ID</th>
+                                    <th width="30%">Nome do Paciente</th>
+                                    <th width="20%">CPF</th>
+                                    <th width="22%">Alergias</th>
+                                    <th width="10%">Status</th>
+                                    <th width="10%">Ações</th>
+                                </tr>
+                            </thead>
+                            <tbody id="listaPacientes">
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!--Footer-->
+        <footer class="footer">
+            <p>&copy; 2026 HealthGest System. Desenvolvido para a disciplina de AEDs III - PUC Minas.</p>
+            <div class="footer-links">
+                <a href="#">Suporte</a>
+                <a href="#">Termos de Uso</a>
+                <a href="#">Documentação</a>
+            </div>
+        </footer>
+    </div>
+
+    <!--Modal de cadastro de um novo paciente-->
+    <div class="modal-overlay" id="modalPaciente">
+        <div class="modal">
+            <div class="modal-header">
+                <h2 id="modalTitle"><i class="fa-solid fa-user-plus"></i> Cadastro de Paciente</h2>
+                <button class="btn-close" id="btnFecharModal"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            <div class="modal-body">
+                <form id="formPaciente">
+                    <input type="hidden" id="pacienteId">
+
+                    <div class="form-grid">
+                        <div class="input-group full-width">
+                            <label for="nome">Nome Completo</label>
+                            <div class="input-with-icon">
+                                <i class="fa-regular fa-user"></i>
+                                <input type="text" id="nome" placeholder="Nome do paciente" required>
+                            </div>
+                        </div>
+
+                        <div class="input-group">
+                            <label for="cpf">CPF</label>
+                            <div class="input-with-icon">
+                                <i class="fa-regular fa-id-card"></i>
+                                <input type="text" id="cpf" placeholder="00000000000" maxlength="11" required>
+                            </div>
+                        </div>
+
+                        <div class="input-group full-width alergias-section">
+                            <label for="alergiaInput">Quadro de Alergias (Opcional)</label>
+                            <div class="alergia-add-box">
+                                <input type="text" id="alergiaInput" placeholder="Ex: Penicilina, Amendoim...">
+                                <button type="button" class="btn btn-secondary" id="btnAddAlergia"><i
+                                        class="fa-solid fa-plus"></i></button>
+                            </div>
+                            <div class="tags-container" id="alergiasTags">
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-outline" id="btnCancelarModal">Cancelar</button>
+                <button type="submit" class="btn btn-primary" form="formPaciente">
+                    <i class="fa-solid fa-save"></i> Gravar no Arquivo
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/app.js"></script>
+    <script src="js/pages.js"></script>
+</body>
+
+</html>
