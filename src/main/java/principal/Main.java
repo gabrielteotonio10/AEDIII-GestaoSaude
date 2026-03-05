@@ -1,5 +1,7 @@
 package principal;
 
+import java.util.List;
+
 import dao.PacienteDAO;
 import io.javalin.Javalin;
 import io.javalin.http.staticfiles.Location;
@@ -12,7 +14,7 @@ public class Main {
         var app = Javalin.create(config -> {
             // Permite que o frontend (que roda em outro domínio) fale com o backend (CORS)
             config.bundledPlugins.enableCors(cors -> cors.addRule(it -> it.anyHost()));
-            // Configura a pasta "public" para servir os arquivos estáticos 
+            // Configura a pasta "public" para servir os arquivos estáticos
             config.staticFiles.add("/public", Location.CLASSPATH);
         });
 
@@ -22,9 +24,19 @@ public class Main {
             Paciente novoPaciente = ctx.bodyAsClass(Paciente.class);
             // Salva o paciente no banco de dados usando o DAO
             PacienteDAO dao = new PacienteDAO();
-            dao.incluir(novoPaciente); 
+            dao.incluir(novoPaciente);
             System.out.println("Salvo no banco de dados: " + novoPaciente.getNome());
             ctx.status(201).result("Paciente salvo com sucesso!");
+        });
+        // Rota para buscar todos os pacientes
+        app.get("/pacientes", ctx -> {
+            try {
+                PacienteDAO dao = new PacienteDAO();
+                List<Paciente> lista = dao.listarTodos();
+                ctx.json(lista);
+            } catch (Exception e) {
+                ctx.status(500).result("Erro ao ler o arquivo binário: " + e.getMessage());
+            }
         });
 
         // Liga o servidor na porta 8080

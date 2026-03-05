@@ -5,3 +5,10 @@ function salvarPacienteNoJava(paciente) {
     body: JSON.stringify(paciente),
   });
 }
+
+function buscarPacientesNoJava() {
+  return fetch("/pacientes").then((resposta) => {
+    if (!resposta.ok) throw new Error("Erro ao buscar dados");
+    return resposta.json(); 
+  });
+}

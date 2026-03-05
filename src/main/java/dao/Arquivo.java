@@ -76,6 +76,27 @@ public class Arquivo<T extends Registro> {
         return null;
     }
 
+    // Retorna uma lista com todos os registros ativos
+    public java.util.List<T> readAll() throws Exception {
+        java.util.List<T> lista = new java.util.ArrayList<>();
+        //  Move o ponteiro para o início dos dados (pula o cabeçalho)
+        arquivo.seek(TAM_CABECALHO);
+        // Percorre o arquivo até o final
+        while (arquivo.getFilePointer() < arquivo.length()) {
+            byte lapide = arquivo.readByte(); // Lê a lápide
+            short tamanho = arquivo.readShort(); // Lê o tamanho do registro
+            byte[] dados = new byte[tamanho];
+            arquivo.read(dados); // Lê o corpo do registro
+            // Se o registro não estiver excluído 
+            if (lapide == ' ') {
+                T obj = construtor.newInstance(); // Cria uma nova instância de T
+                obj.fromByteArray(dados); // Preenche o objeto com os bytes
+                lista.add(obj); // Adiciona na lista
+            }
+        }
+        return lista;
+    }
+
     // Delete
     public boolean delete(int id) throws Exception {
         // Lógica parecida com read
@@ -169,15 +190,16 @@ public class Arquivo<T extends Registro> {
                 // Se achou um burraco maior que o novo, insere aqui (ordem crescente de
                 // tamanho)
                 if (tamanho > tamanhoEspaco) {
-                    // Se for o primeiro da lista muda o cabeçalho, senão muda o ponteiro do buraco anterior
+                    // Se for o primeiro da lista muda o cabeçalho, senão muda o ponteiro do buraco
+                    // anterior
                     if (posicao == 4)
                         arquivo.seek(posicao);
                     else
                         arquivo.seek(posicao + 3);
-                        arquivo.writeLong(enderecoEspaco);
-                        arquivo.seek(enderecoEspaco + 3);
-                        arquivo.writeLong(endereco);
-                        break;
+                    arquivo.writeLong(enderecoEspaco);
+                    arquivo.seek(enderecoEspaco + 3);
+                    arquivo.writeLong(endereco);
+                    break;
                 }
                 // Se chegou no fim da lista, insere aqui (não achou ninguém maior)
                 if (proximo == -1) {
@@ -194,7 +216,8 @@ public class Arquivo<T extends Registro> {
         }
     }
 
-    // Procura um registro excluído com espaço suficiente para armazenar um novo registro
+    // Procura um registro excluído com espaço suficiente para armazenar um novo
+    // registro
     private long getDeleted(int tamanhoNecessario) throws Exception {
         long posicao = 4;
         arquivo.seek(posicao);

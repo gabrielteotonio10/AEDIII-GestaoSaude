@@ -62,3 +62,53 @@ document.getElementById("formPaciente")?.addEventListener("submit", (e) => {
       mostrarNotificacao("Servidor Java desligado ou inacessível.", "erro");
     });
 });
+
+// Carregar a tabela 
+function atualizarTabelaPacientes() {
+  const corpoTabela = document.getElementById("listaPacientes");
+
+  buscarPacientesNoJava()
+    .then((pacientes) => {
+      corpoTabela.innerHTML = ""; // Limpa a tabela para não duplicar
+
+      if (pacientes.length === 0) {
+        corpoTabela.innerHTML = '<tr><td colspan="6" style="text-align:center">Nenhum paciente cadastrado.</td></tr>';
+        return;
+      }
+
+      // Percorre a lista de pacientes do Java
+      pacientes.forEach((p) => {
+        const tr = document.createElement("tr");
+
+        // Tratamento para a lista de alergias 
+        const alergiasTexto = p.alergias && p.alergias.length > 0 
+                               ? p.alergias.join(", ") 
+                               : '<span class="text-muted">Nenhuma</span>';
+
+        tr.innerHTML = `
+            <td>${p.id}</td>
+            <td><strong>${p.nome}</strong></td>
+            <td>${p.cpf}</td>
+            <td>${alergiasTexto}</td>
+            <td><span class="status-badge ativo">Ativo</span></td>
+            <td>
+                <div class="actions">
+                    <button class="btn-icon" onclick="editarPaciente(${p.id})" title="Editar"><i class="fa-solid fa-pen-to-square"></i></button>
+                    <button class="btn-icon delete" onclick="excluirPaciente(${p.id})" title="Excluir"><i class="fa-solid fa-trash"></i></button>
+                </div>
+            </td>
+        `;
+        corpoTabela.appendChild(tr);
+      });
+      
+      // Atualiza os cards de estatísticas 
+      document.getElementById("statTotal").innerText = pacientes.length;
+      document.getElementById("statAtivos").innerText = pacientes.length;
+    })
+    .catch((erro) => {
+      console.error("Erro ao carregar tabela:", erro);
+      mostrarNotificacao("Não foi possível carregar a lista de pacientes.", "erro");
+    });
+}
+// Chamar a função assim que a página terminar de carregar
+document.addEventListener("DOMContentLoaded", atualizarTabelaPacientes);
