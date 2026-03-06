@@ -109,7 +109,7 @@
                             <button class="btn btn-secondary" id="btnBuscar">Localizar</button>
                         </div>
                         <div class="toolbar-actions">
-                            <button class="btn btn-outline" title="Atualizar Tabela"><i
+                            <button class="btn btn-outline" id="btnRecarregar" title="Atualizar Tabela"><i
                                     class="fa-solid fa-rotate-right"></i></button>
                             <button class="btn btn-outline" title="Exportar Dados"><i
                                     class="fa-solid fa-download"></i></button>
@@ -192,6 +192,22 @@
                 <button class="btn btn-outline" id="btnCancelarModal">Cancelar</button>
                 <button type="submit" class="btn btn-primary" form="formPaciente">
                     <i class="fa-solid fa-save"></i> Gravar no Arquivo
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!--Confirmar exclusão-->
+    <div class="modal-confirm-overlay" id="modalConfirmacao">
+        <div class="modal-confirm">
+            <i class="fa-solid fa-circle-exclamation modal-confirm-icon"></i>
+            <h3>Excluir Paciente?</h3>
+            <p>Tem certeza que deseja excluir este registro? A lápide será adicionada no arquivo binário.</p>
+            <div class="modal-confirm-actions">
+                <button class="btn btn-outline" id="btnCancelarExclusao">Cancelar</button>
+                <button class="btn btn-primary" id="btnConfirmarExclusao"
+                    style="background-color: #ef4444; border-color: #ef4444;">
+                    Sim, excluir
                 </button>
             </div>
         </div>
