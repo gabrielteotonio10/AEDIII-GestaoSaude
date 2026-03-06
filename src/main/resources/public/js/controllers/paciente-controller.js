@@ -36,6 +36,21 @@ window.removerAlergia = function (index) {
   atualizarTagsNaTela();
 };
 
+function limparFormularioEPaciente() {
+  listaAlergiasTemporaria = [];
+  atualizarTagsNaTela();
+  document.getElementById("formPaciente").reset(); 
+}
+document
+  .getElementById("btnFecharModal")
+  ?.addEventListener("click", limparFormularioEPaciente);
+document
+  .getElementById("btnCancelarModal")
+  ?.addEventListener("click", limparFormularioEPaciente);
+document
+  .getElementById("btnNovoPaciente")
+  ?.addEventListener("click", limparFormularioEPaciente);
+
 // Ação do botão de recarregar a tabela
 document.getElementById("btnRecarregar")?.addEventListener("click", () => {
   const inputBusca = document.getElementById("inputBuscaId");
