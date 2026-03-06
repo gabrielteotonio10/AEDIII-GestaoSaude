@@ -9,9 +9,12 @@ function salvarPacienteNoJava(paciente) {
 
 // Buscar todos os pacientes
 function buscarPacientesNoJava() {
-  return fetch("/pacientes").then((resposta) => {
+  return fetch("/pacientes", {
+    method: "GET",
+    headers: { "Cache-Control": "no-cache" }, 
+  }).then((resposta) => {
     if (!resposta.ok) throw new Error("Erro ao buscar dados");
-    return resposta.json(); 
+    return resposta.json();
   });
 }
 

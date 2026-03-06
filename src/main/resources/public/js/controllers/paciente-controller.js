@@ -51,14 +51,13 @@ function atualizarTabelaPacientes() {
 
   buscarPacientesNoJava()
     .then((pacientes) => {
+      pacientes.reverse();
       corpoTabela.innerHTML = ""; // Limpa a tabela para não duplicar
-
       if (pacientes.length === 0) {
         corpoTabela.innerHTML =
           '<tr><td colspan="6" style="text-align:center">Nenhum paciente cadastrado.</td></tr>';
         return;
       }
-
       // Percorre a lista de pacientes do Java
       pacientes.forEach((p) => {
         const tr = document.createElement("tr");
@@ -86,8 +85,20 @@ function atualizarTabelaPacientes() {
       });
 
       // Atualiza os cards de estatísticas
-      document.getElementById("statTotal").innerText = pacientes.length;
-      document.getElementById("statAtivos").innerText = pacientes.length;
+      const totalAtivos = pacientes.length;
+      // Filtra e conta quantos pacientes têm pelo menos 1 alergia
+      const pacientesComAlergia = pacientes.filter(
+        (p) => p.alergias && p.alergias.length > 0,
+      ).length;
+      // Descobre qual é o maior ID cadastrado (se a lista estiver vazia, é 0)
+      const ultimoId =
+        pacientes.length > 0 ? Math.max(...pacientes.map((p) => p.id)) : 0;
+      // Joga os valores na tela 
+      document.getElementById("statAtivos").innerText = totalAtivos;
+      const elAlergias = document.getElementById("statAlergias");
+      if (elAlergias) elAlergias.innerText = pacientesComAlergia;
+      const elUltimoId = document.getElementById("statUltimoId");
+      if (elUltimoId) elUltimoId.innerText = ultimoId;
     })
     .catch((erro) => {
       console.error("Erro ao carregar tabela:", erro);
