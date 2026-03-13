@@ -1,8 +1,0 @@
-dao\Arquivo.class
-principal\MenuPacientes.class
-model\Paciente.class
-controller\PacienteController.class
-dao\PacienteDAO.class
-principal\Principal.class
-principal\Main.class
-model\Registro.class
